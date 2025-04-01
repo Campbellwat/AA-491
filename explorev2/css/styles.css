@@ -1,0 +1,149 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Event grid layout */
+.event-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Loading spinner */
+.spinner {
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 3px solid #3498db;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.autocomplete {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: 0.5rem;
+    width: 100%;
+    z-index: 10;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.autocomplete-item {
+    padding: 0.75rem;
+    cursor: pointer;
+}
+
+.autocomplete-item:hover {
+    background-color: #f3f4f6;
+}
+
+/* Mobile responsiveness improvements */
+@media (max-width: 640px) {
+    .event-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Fix hover effect for mobile */
+@media (hover: none) {
+    .event-tile:hover {
+        transform: none !important;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    }
+}
+
+/* Improve scaling on different devices */
+html {
+    font-size: 16px;
+}
+
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+/* Make buttons more tappable on mobile */
+button, 
+.event-tile button,
+.autocomplete-item {
+    min-height: 44px;
+}
+
+/* Add these styles to your CSS file */
+
+/* Carousel container */
+#eventsCarousel {
+    position: relative;
+    margin: 0 50px; /* Make space for navigation buttons */
+}
+
+/* Animation for fading in event tiles */
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Ensure event tiles have equal height within a row */
+.event-tile {
+    transition: transform 0.3s ease, opacity 0.5s ease;
+}
+
+/* Hover effect for event tiles */
+.event-tile:hover {
+    transform: translateY(-5px);
+}
+
+/* Pagination dots styling */
+#carouselPagination button {
+    transition: background-color 0.3s ease;
+}
+
+/* Navigation buttons hover effects */
+#prevButton, #nextButton {
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+#prevButton:hover:not(:disabled),
+#nextButton:hover:not(:disabled) {
+    background-color: #f3f4f6;
+}
+
+#prevButton:disabled,
+#nextButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Ensure responsive behavior */
+@media (max-width: 640px) {
+    #eventsCarousel {
+        margin: 0 30px;
+    }
+    
+    #prevButton, #nextButton {
+        padding: 0.5rem;
+    }
+}
