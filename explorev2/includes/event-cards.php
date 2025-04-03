@@ -1,7 +1,7 @@
 <?php if (!empty($filtered_events)): ?>
     <?php foreach ($filtered_events as $event): ?>
         <div class="event-tile flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4">
-            <div class="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 ease-in-out hover:scale-102 hover:shadow-xl h-full">
+        <div onclick="openModal(<?php echo htmlspecialchars(json_encode($event)); ?>)" class="cursor-pointer flex flex-col bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 ease-in-out hover:scale-102 hover:shadow-xl h-full">
                 <div class="h-40 bg-gray-200 relative">
                     <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 opacity-80"></div>
                     <div class="absolute inset-0 flex items-center justify-center">
@@ -12,27 +12,6 @@
                 </div>
                 <div class="p-5 flex flex-col flex-grow">
                     <h3 class="text-xl font-bold text-gray-800 mb-2"><?php echo htmlspecialchars($event["name"]); ?></h3>
-                    <div class="flex items-center text-gray-600 mb-2">
-                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                        <span><?php echo htmlspecialchars($event["postcode"]); ?></span>
-                    </div>
-                    <div class="flex items-center text-gray-600 mb-2">
-                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                        </svg>
-                        <span><?php echo htmlspecialchars($event["date"]); ?></span>
-                    </div>
-                    <div class="flex items-center text-gray-600 mb-3">
-                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        <span><?php echo htmlspecialchars($event["time"]); ?></span>
-                    </div>
-                    <p class="text-gray-600 mb-4 flex-grow"><?php echo htmlspecialchars($event["description"]); ?></p>
-                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">View Details</button>
                 </div>
             </div>
         </div>
@@ -49,3 +28,18 @@
         </button>
     </div>
 <?php endif; ?>
+
+<!-- <script>
+function openModal(event) {
+    document.getElementById('modalEventName').textContent = event.name;
+    document.getElementById('modalEventDate').textContent = event.date;
+    document.getElementById('modalEventTime').textContent = event.time;
+    document.getElementById('modalEventLocation').textContent = event.postcode;
+    document.getElementById('modalEventDescription').textContent = event.description;
+    document.getElementById('eventModal').classList.remove('hidden');
+}
+
+function closeModal() {
+    document.getElementById('eventModal').classList.add('hidden');
+}
+</script> -->

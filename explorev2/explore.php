@@ -85,4 +85,80 @@ include 'includes/search-bar.php';
         <!-- Pagination dots will be added by JavaScript -->
     </div>
 </div>
+
+<!-- Modal Overlay -->
+<div id="eventModalOverlay" class="fixed inset-0 hidden bg-black bg-opacity-50 z-40"></div>
+
+<!-- Modal Structure -->
+<div id="eventModal" class="fixed inset-0 hidden flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96 relative">
+        <h2 id="modalEventName" class="text-xl font-bold mb-2"></h2>
+        <div class="flex items-center text-gray-600 mb-2">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            <p id="modalEventDate" class="text-gray-600"></p>
+        </div>
+        <div class="flex items-center text-gray-600 mb-2">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p id="modalEventTime" class="text-gray-600"></p>
+        </div>
+        <div class="flex items-center text-gray-600 mb-2">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <p id="modalEventLocation" class="text-gray-600"></p>
+        </div>
+        <p id="modalEventDescription" class="text-gray-700 mb-4"></p>
+
+        <!-- Buttons Container -->
+        <div class="flex justify-between">
+            <button onclick="closeModal()" class="w-1/2 bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300 mr-2">
+                Close
+            </button>
+            <button class="w-1/2 bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">
+                Join Event
+            </button>
+        </div>
+    </div>
+</div>
+
 <?php include 'includes/footer.php'; ?>
+
+<script>
+function openModal(event) {
+    document.getElementById('modalEventName').textContent = event.name;
+    document.getElementById('modalEventDate').textContent = event.date;
+    document.getElementById('modalEventTime').textContent = event.time;
+    document.getElementById('modalEventLocation').textContent = event.postcode;
+    document.getElementById('modalEventDescription').textContent = event.description;
+    
+    document.getElementById('eventModal').classList.remove('hidden');
+    document.getElementById('eventModalOverlay').classList.remove('hidden');
+    
+    // Disable scrolling
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('eventModal').classList.add('hidden');
+    document.getElementById('eventModalOverlay').classList.add('hidden');
+    
+    // Enable scrolling again
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside the modal content
+document.addEventListener('click', function (event) {
+    let modal = document.getElementById('eventModal');
+    let overlay = document.getElementById('eventModalOverlay');
+    
+    // If clicking directly on the overlay (background), close the modal
+    if (event.target === overlay) {
+        closeModal();
+    }
+});
+</script>
