@@ -157,7 +157,7 @@ document.addEventListener('click', function (event) {
     let overlay = document.getElementById('eventModalOverlay');
     
     // If clicking directly on the overlay (background), close the modal
-    if (event.target === overlay) {
+    if (event.target === modal) {
         closeModal();
     }
 });

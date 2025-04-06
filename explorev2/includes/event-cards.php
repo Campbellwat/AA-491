@@ -1,9 +1,9 @@
 <?php if (!empty($filtered_events)): ?>
     <?php foreach ($filtered_events as $event): ?>
         <div class="event-tile flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4">
-        <div onclick="openModal(<?php echo htmlspecialchars(json_encode($event)); ?>)" class="cursor-pointer flex flex-col bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 ease-in-out hover:scale-102 hover:shadow-xl h-full">
+            <div onclick="openModal(<?php echo htmlspecialchars(json_encode($event)); ?>)" class="cursor-pointer flex flex-col bg-[#0a0f2c] text-white rounded-2xl shadow-lg overflow-hidden transition-transform duration-300 ease-in-out hover:scale-102 hover:shadow-xl h-full">
                 <div class="h-40 bg-gray-200 relative">
-                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 opacity-80"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 opacity-80 rounded-t-2xl"></div>
                     <div class="absolute inset-0 flex items-center justify-center">
                         <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <div class="p-5 flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2"><?php echo htmlspecialchars($event["name"]); ?></h3>
+                    <h3 class="text-xl font-bold text-white mb-2"><?php echo htmlspecialchars($event["name"]); ?></h3>
                 </div>
             </div>
         </div>
@@ -28,18 +28,3 @@
         </button>
     </div>
 <?php endif; ?>
-
-<!-- <script>
-function openModal(event) {
-    document.getElementById('modalEventName').textContent = event.name;
-    document.getElementById('modalEventDate').textContent = event.date;
-    document.getElementById('modalEventTime').textContent = event.time;
-    document.getElementById('modalEventLocation').textContent = event.postcode;
-    document.getElementById('modalEventDescription').textContent = event.description;
-    document.getElementById('eventModal').classList.remove('hidden');
-}
-
-function closeModal() {
-    document.getElementById('eventModal').classList.add('hidden');
-}
-</script> -->
